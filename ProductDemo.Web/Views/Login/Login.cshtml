@@ -1,0 +1,43 @@
+﻿@model  ProductDemo.Web.Models.LoginModel
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>MVC Login Application Demo</legend>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @if(ViewBag.Message !=null)
+         {
+            <div style="color:red">
+                @ViewBag.Message
+            </div>
+         }
+
+        <table style="border-collapse: separate; border-spacing: 0 15px ">
+            <tr>
+                <td>@Html.LabelFor(a => a.UserName)</td>
+                <td>@Html.TextBoxFor(a => a.UserName)</td>
+                <td style="color:red ">@Html.ValidationMessageFor(a => a.UserName)</td>
+                
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(a => a.Password)</td>
+                <td>@Html.TextBoxFor(a => a.Password)</td>
+                <td style="color:red">@Html.ValidationMessageFor(a => a.Password)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+}

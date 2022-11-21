@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProductDemo.Web.Product>
+@{
+    ViewBag.Title = "Product";
+    WebGrid webGrid = new WebGrid(source: Model);
+}
+
+<h2>Product</h2>
+
+@webGrid.GetHtml(
+    htmlAttributes: new {@id = "WebGrid" , @class = "Grid"},
+    columns:webGrid.Columns(
+        webGrid.Column("ProductId", "Product Id"),
+        webGrid.Column("ProductName", "Product Name"),
+        webGrid.Column("CategoryId", "CategoryId")))
+
+<fieldset>
+    <legend>Product</legend>
+
+    @if (Session["UserName"] != null)
+            { 
+                <text >Welcome @Session["UserName"].ToString() </text>
+            }
+</fieldset>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="background-color:aqua">Product Id</th>
+            <th style="background-color:aqua">Product Name</th>
+            <th style="background-color:aqua">Category Id</th>
+            <th style="background-color:aqua">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:darkorange">@item.ProductId</td>
+                <td style="color:darkorange" >@item.ProductName</td>
+                <td style="color:darkorange">@item.CategoryId</td>
+                <td>
+                    <a href="" class="btn-default">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
